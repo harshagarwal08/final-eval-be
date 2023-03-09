@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   collections.init({
     id:{
+      primaryKey: true,
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4
     },

@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   content_types.init({
     id: {
+      primaryKey: true,
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4
     },
