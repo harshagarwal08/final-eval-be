@@ -6,6 +6,7 @@ ContentTypeRouter.route('/')
   .post(ContentTypeController.createContentType);
 
 ContentTypeRouter.route('/:id')
+  .get(ContentTypeController.getContentTypeById)
   .post(ContentTypeController.addField)
   .patch(ContentTypeController.updateContentTypeName)
   .delete(ContentTypeController.deleteField);

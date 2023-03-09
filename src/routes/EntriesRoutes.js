@@ -6,7 +6,7 @@ EntriesRouter.route('/:collectionId/entries')
   .post(EntriesController.createEntry);
 
 EntriesRouter.route('/:collectionId/entries/:entryId')
-  .put(EntriesController.updateEntryByCollectionId)
-  .delete(EntriesController.deleteEntryByCollectionId);
+  .put(EntriesController.updateEntry)
+  .delete(EntriesController.deleteEntry);
 
 module.exports = EntriesRouter;

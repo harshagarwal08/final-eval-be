@@ -9,6 +9,16 @@ const getContentTypes = async (req, res) => {
   }
 };
 
+const getContentTypeById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const contentType = await ContentTypeService.getContentTypeById(id);
+    res.status(200).json(contentType);
+  } catch (error) {
+    res.status(500).json(error.message);
+  }
+};
+
 const createContentType = async (req, res) => {
   try {
     const { name } = req.body;
@@ -29,7 +39,6 @@ const updateContentTypeName = async (req, res) => {
     res.status(500).json(error.message);
   }
 };
-
 
 const addField = async (req, res) => {
   try {
@@ -53,4 +62,4 @@ const deleteField = async (req, res) => {
   }
 };
 
-module.exports = { getContentTypes, createContentType, updateContentTypeName, addField, deleteField };
+module.exports = { getContentTypes, getContentTypeById, createContentType, updateContentTypeName, addField, deleteField };

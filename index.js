@@ -7,8 +7,8 @@ const cors = require('cors');
 app.use(cors());
 app.use(express.json());
 
-const ContentTypeRouter = require('./src/routes/ContentTypeRoutes');
-const EntriesRouter = require('./src/routes/EntriesRoutes');
+const ContentTypeRouter = require('./src/routes/contentTypeRoutes');
+const EntriesRouter = require('./src/routes/entriesRoutes');
 
 app.use('/content_types', ContentTypeRouter);
 app.use('/collections', EntriesRouter);

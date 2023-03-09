@@ -14,6 +14,15 @@ const createContentType = async (name) => {
   return newContentType.dataValues;
 };
 
+const getContentTypeById = async (id) => {
+  const contentType = await content_types.findOne({
+    where: {
+      id: id
+    }
+  });
+  return contentType;
+};
+
 const getContentTypes = async () => {
   const contentTypes = await content_types.findAll();
   return contentTypes;
@@ -99,4 +108,4 @@ const deleteField = async (id, name) => {
   return updatedContentType[1].dataValues;
 };
 
-module.exports = { createContentType, getContentTypes, addField, updateContentTypeName, deleteField };
+module.exports = { createContentType, getContentTypeById, getContentTypes, addField, updateContentTypeName, deleteField };

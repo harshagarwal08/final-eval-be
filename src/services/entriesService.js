@@ -17,12 +17,12 @@ const getAllEntriesByCollectionId = async (collectionId) => {
   return allEntries;
 };
 
-const updateEntryByCollectionId = async (collectionId, content_type_entries) => {
+const updateEntry = async (entryId, content_type_entries) => {
   const updatedEntry = await entries.update({
     content_type_entries: content_type_entries
   }, {
     where: {
-      collection_id: collectionId
+      id: entryId
     },
     returning: true,
     plain: true
@@ -30,14 +30,13 @@ const updateEntryByCollectionId = async (collectionId, content_type_entries) => 
   return updatedEntry[1].dataValues;
 };
 
-const deleteEntryByCollectionId = async (collectionId, entryId) => {
+const deleteEntry = async (entryId) => {
   const deletedEntry = await entries.destroy({
     where: {
-      collection_id: collectionId,
       id: entryId
     }
   });
   return deletedEntry;
 };
 
-module.exports = { createEntry, getAllEntriesByCollectionId, updateEntryByCollectionId, deleteEntryByCollectionId };
+module.exports = { createEntry, getAllEntriesByCollectionId, updateEntry, deleteEntry };
