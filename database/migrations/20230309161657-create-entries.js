@@ -11,12 +11,6 @@ module.exports = {
       },
       collection_id: {
         type: Sequelize.UUID,
-        references: {
-          model: 'collections',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
       },
       content_type_entries: {
         type: Sequelize.JSON

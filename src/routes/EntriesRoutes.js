@@ -1,6 +1,9 @@
 const EntriesRouter = require('express').Router();
 const EntriesController = require('../controllers/entriesController');
 
+EntriesRouter.route('/:id')
+  .get(EntriesController.getCollection);
+
 EntriesRouter.route('/:collectionId/entries')
   .get(EntriesController.getAllEntriesByCollectionId)
   .post(EntriesController.createEntry);

@@ -15,12 +15,6 @@ module.exports = {
       },
       content_type_id: {
         type: Sequelize.UUID,
-        references: {
-          model: 'content_types',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
       },
       createdAt: {
         allowNull: false,

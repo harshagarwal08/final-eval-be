@@ -1,4 +1,13 @@
-const {entries} = require('../../database/models/index');
+const {entries, collections} = require('../../database/models/index');
+
+const getCollection = async (id) => {
+  const collection = await collections.findOne({
+    where: {
+      content_type_id: id
+    }
+  });
+  return collection;
+};
 
 const createEntry = async (collectionId, content_type_entries) => {
   const newEntry = await entries.create({
@@ -39,4 +48,4 @@ const deleteEntry = async (entryId) => {
   return deletedEntry;
 };
 
-module.exports = { createEntry, getAllEntriesByCollectionId, updateEntry, deleteEntry };
+module.exports = { getCollection, createEntry, getAllEntriesByCollectionId, updateEntry, deleteEntry };

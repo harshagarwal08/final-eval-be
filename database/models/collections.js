@@ -11,13 +11,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models.content_types, {
-        foreignKey: 'content_type_id',
-      });
-      this.hasMany(models.entries, {
-        foreignKey: 'collection_id',
-        sourceKey: 'id',
-      });
     }
   }
   collections.init({

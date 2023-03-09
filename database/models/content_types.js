@@ -11,12 +11,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasOne(models.collections, {
-        foreignKey: 'content_type_id',
-        sourceKey: 'id',
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE'
-      });
     }
   }
   content_types.init({

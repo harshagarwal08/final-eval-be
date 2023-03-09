@@ -1,5 +1,15 @@
 const EntriesService = require('../services/entriesService');
 
+const getCollection = async (req, res) => {
+  try {
+    const {id} = req.params;
+    const collectionId = await EntriesService.getCollection(id);
+    res.status(200).json(collectionId);
+  } catch (error) {
+    res.status(500).json(error.message);
+  }
+};
+
 const createEntry = async (req, res) => {
   try {
     const {collectionId} = req.params;
@@ -42,4 +52,4 @@ const deleteEntry = async (req, res) => {
   }
 };
 
-module.exports = { createEntry, getAllEntriesByCollectionId, updateEntry, deleteEntry };
+module.exports = { getCollection, createEntry, getAllEntriesByCollectionId, updateEntry, deleteEntry };
