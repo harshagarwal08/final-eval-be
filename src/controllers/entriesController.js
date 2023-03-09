@@ -10,6 +10,15 @@ const getCollection = async (req, res) => {
   }
 };
 
+const getAllCollections = async (req, res) => {
+  try {
+    const collections = await EntriesService.getAllCollections();
+    res.status(200).json(collections);
+  } catch (error) {
+    res.status(500).json(error.message);
+  } 
+};
+
 const createEntry = async (req, res) => {
   try {
     const {collectionId} = req.params;
@@ -52,4 +61,4 @@ const deleteEntry = async (req, res) => {
   }
 };
 
-module.exports = { getCollection, createEntry, getAllEntriesByCollectionId, updateEntry, deleteEntry };
+module.exports = { getCollection, getAllCollections, createEntry, getAllEntriesByCollectionId, updateEntry, deleteEntry };

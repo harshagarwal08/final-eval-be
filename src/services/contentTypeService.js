@@ -45,6 +45,32 @@ const addField = async (id, name, type) => {
     returning: true,
     plain: true
   });
+  const collection = await collections.findOne({
+    where: {
+      content_type_id: id
+    }
+  });
+  const collectionId = collection.id;
+
+  const allEntries = await entries.findAll({
+    where: {
+      collection_id: collectionId
+    }
+  });
+  for (let i = 0; i < allEntries.length; i++) {
+    const entry = allEntries[i];
+    const content_type_entries = entry.content_type_entries;
+    content_type_entries[name] = '';
+    await entries.update({
+      content_type_entries: content_type_entries
+    }, {
+      where: {
+        id: entry.id
+      },
+      returning: true,
+      plain: true
+    });
+  }
   return updatedContentType[1].dataValues;
 };
 
@@ -87,12 +113,21 @@ const deleteField = async (id, name) => {
     returning: true,
     plain: true
   });
-  const allEntries = await entries.findAll({
+  const collection = await collections.findOne({
     where: {
-      collection_id: id
+      content_type_id: id
     }
   });
-  allEntries.forEach(async (entry) => {
+  const collectionId = collection.id;
+
+  const allEntries = await entries.findAll({
+    where: {
+      collection_id: collectionId
+    }
+  });
+
+  for(let i = 0; i < allEntries.length; i++) {
+    const entry = allEntries[i];
     const content_type_entries = entry.content_type_entries;
     delete content_type_entries[name];
     await entries.update({
@@ -104,7 +139,8 @@ const deleteField = async (id, name) => {
       returning: true,
       plain: true
     });
-  });
+  }
+  
   return updatedContentType[1].dataValues;
 };
 

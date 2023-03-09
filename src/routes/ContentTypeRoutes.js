@@ -7,8 +7,8 @@ ContentTypeRouter.route('/')
 
 ContentTypeRouter.route('/:id')
   .get(ContentTypeController.getContentTypeById)
-  .post(ContentTypeController.addField)
   .patch(ContentTypeController.updateContentTypeName)
+  .post(ContentTypeController.addField)
   .delete(ContentTypeController.deleteField);
 
 module.exports = ContentTypeRouter;

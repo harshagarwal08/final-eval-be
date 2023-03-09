@@ -9,6 +9,11 @@ const getCollection = async (id) => {
   return collection;
 };
 
+const getAllCollections = async () => {
+  const collections = await collections.findAll();
+  return collections;
+};
+
 const createEntry = async (collectionId, content_type_entries) => {
   const newEntry = await entries.create({
     collection_id: collectionId,
@@ -48,4 +53,4 @@ const deleteEntry = async (entryId) => {
   return deletedEntry;
 };
 
-module.exports = { getCollection, createEntry, getAllEntriesByCollectionId, updateEntry, deleteEntry };
+module.exports = { getCollection, getAllCollections, createEntry, getAllEntriesByCollectionId, updateEntry, deleteEntry };

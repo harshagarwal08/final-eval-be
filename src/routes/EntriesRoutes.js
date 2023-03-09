@@ -1,6 +1,9 @@
 const EntriesRouter = require('express').Router();
 const EntriesController = require('../controllers/entriesController');
 
+EntriesRouter.route('/')
+  .get(EntriesController.getAllCollections);
+
 EntriesRouter.route('/:id')
   .get(EntriesController.getCollection);
 
