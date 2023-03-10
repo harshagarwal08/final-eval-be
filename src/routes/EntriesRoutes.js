@@ -1,18 +1,19 @@
 const EntriesRouter = require('express').Router();
 const EntriesController = require('../controllers/entriesController');
+const { validate } = require('../middlewares/authValidation');
 
 EntriesRouter.route('/')
-  .get(EntriesController.getAllCollections);
+  .get(validate, EntriesController.getAllCollections);
 
 EntriesRouter.route('/:id')
-  .get(EntriesController.getCollection);
+  .get(validate, EntriesController.getCollection);
 
 EntriesRouter.route('/:collectionId/entries')
-  .get(EntriesController.getAllEntriesByCollectionId)
-  .post(EntriesController.createEntry);
+  .get(validate, EntriesController.getAllEntriesByCollectionId)
+  .post(validate, EntriesController.createEntry);
 
 EntriesRouter.route('/:collectionId/entries/:entryId')
-  .put(EntriesController.updateEntry)
-  .delete(EntriesController.deleteEntry);
+  .put(validate, EntriesController.updateEntry)
+  .delete(validate, EntriesController.deleteEntry);
 
 module.exports = EntriesRouter;

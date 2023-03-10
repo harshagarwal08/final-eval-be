@@ -3,15 +3,15 @@ const {entries, collections} = require('../../database/models/index');
 const getCollection = async (id) => {
   const collection = await collections.findOne({
     where: {
-      content_type_id: id
+      id: id
     }
   });
   return collection;
 };
 
 const getAllCollections = async () => {
-  const collections = await collections.findAll();
-  return collections;
+  const allCollections = await collections.findAll();
+  return allCollections;
 };
 
 const createEntry = async (collectionId, content_type_entries) => {

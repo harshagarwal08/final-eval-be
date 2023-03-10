@@ -1,11 +1,20 @@
 const ContentTypeService = require('../services/contentTypeService');
+const HTTPError = require('../utils/errors/httpError');
+
+const catchBlockHandler = (error, res) => {
+  if (error instanceof HTTPError) {
+    res.status(error.code).json({ message: error.message });
+  } else {
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
 
 const getContentTypes = async (req, res) => {
   try {
     const contentTypes = await ContentTypeService.getContentTypes();
     res.status(200).json(contentTypes);
   } catch (error) {
-    res.status(500).json(error.message);
+    catchBlockHandler(error, res);
   }
 };
 
@@ -15,7 +24,7 @@ const getContentTypeById = async (req, res) => {
     const contentType = await ContentTypeService.getContentTypeById(id);
     res.status(200).json(contentType);
   } catch (error) {
-    res.status(500).json(error.message);
+    catchBlockHandler(error, res);
   }
 };
 
@@ -25,7 +34,7 @@ const createContentType = async (req, res) => {
     const newContentType = await ContentTypeService.createContentType(name);
     res.status(201).json(newContentType);
   } catch (error) {
-    res.status(500).json(error.message);
+    catchBlockHandler(error, res);
   }
 };
 
@@ -36,7 +45,7 @@ const updateContentTypeName = async (req, res) => {
     const updatedContentType = await ContentTypeService.updateContentTypeName(id, name);
     res.status(200).json(updatedContentType);
   } catch (error) {
-    res.status(500).json(error.message);
+    catchBlockHandler(error, res);
   }
 };
 
@@ -47,7 +56,7 @@ const addField = async (req, res) => {
     const updatedContentType = await ContentTypeService.addField(id, name, type);
     res.status(200).json(updatedContentType);
   } catch (error) {
-    res.status(500).json(error.message);
+    catchBlockHandler(error, res);
   }
 };
 
@@ -58,7 +67,7 @@ const deleteField = async (req, res) => {
     const deletedContentType = await ContentTypeService.deleteField(id, name);
     res.status(200).json(deletedContentType);
   } catch (error) {
-    res.status(500).json(error.message);
+    catchBlockHandler(error, res);
   }
 };
 
